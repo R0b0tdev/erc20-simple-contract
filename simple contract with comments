@@ -1,0 +1,50 @@
+// SPDX-License-Identifier: MIT
+// указываем лицензию, под которой выпущен код (MIT)
+
+pragma solidity ^0.8.4;
+// указываем версию Solidity
+
+contract FunctionTypes {
+    // объявляем контракт
+
+    uint256 public number = 5;
+    // объявляем переменную
+
+    constructor() payable {}
+    // объявляем конструктор
+
+    // Типы функций
+    // function (<типы параметров>) {internal|external} [pure|view|payable] [returns (<типы возвращаемых значений>)]
+    // по умолчанию - function
+
+    // external: функция, которую можно вызвать из вне контракта
+    function add() external {
+        number = number + 1;
+    }
+
+    // pure: функция, которая не взаимодействует с блокчейном, и не изменяет состояние контракта
+    function addPure(uint256 _number) external pure returns (uint256 new_number) {
+        new_number = _number + 1;
+    }
+
+    // view: функция, которая не изменяет состояние контракта, но может считывать данные из блокчейна
+    function addView() external view returns (uint256 new_number) {
+        new_number = number + 1;
+    }
+
+    // internal: функция, которая может быть вызвана только внутри контракта
+    function minus() internal {
+        number = number - 1;
+    }
+
+    // функция внутри контракта может вызвать внутреннюю функцию
+    function minusCall() external {
+        minus();
+    }
+
+    // payable: функция, которая позволяет передавать эфир в контракт
+    function minusPayable() external payable returns (uint256 balance) {
+        minus();
+        balance = address(this).balance;
+    }
+}
