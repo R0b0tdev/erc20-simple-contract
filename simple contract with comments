@@ -17,7 +17,7 @@ contract FunctionTypes {
     // function (<типы параметров>) {internal|external} [pure|view|payable] [returns (<типы возвращаемых значений>)]
     // по умолчанию - function
 
-    // external: функция, которую можно вызвать из вне контракта
+    // external: функция, которую можно вызвать из вне контракта :
     function add() external {
         number = number + 1;
     }
